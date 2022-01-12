@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : sam. 08 jan. 2022 à 18:48
+-- Généré le : sam. 08 jan. 2022 à 16:57
 -- Version du serveur : 10.4.22-MariaDB
--- Version de PHP : 8.1.1
+-- Version de PHP : 8.0.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -63,8 +63,7 @@ ALTER TABLE `articles`
 -- Index pour la table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`ID`),
-  ADD UNIQUE KEY `USERNAME` (`USERNAME`,`MAIL`);
+  ADD PRIMARY KEY (`ID`);
 
 --
 -- AUTO_INCREMENT pour les tables déchargées

@@ -1,33 +1,56 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <link rel="stylesheet" href="assets/css/login.css">
-        <title>Login</title>
-    </head>
-    <body>
-        <div class="Forum">
-            <a>Forum</a>
+<html lang="FR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projet Forum</title>
+    <!-- <link rel="icon" href="/static/img/icon/forum.png"> -->
+    <link rel="stylesheet" href="assets/css/login.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div id="forum_tittle">
+                <a href="/php_exam/home.php">Forum</a>  
+            </div>
+        </nav>
+    </header>
+    <div class="connexion">
+        <div class="L-Title flex padding">
+            <h1>Connexion</h1>
         </div>
-        <div class="container">
-            <div class="margcont">
-                <h1>S'identifier</h1>
-                <div class="input-group">
-                    <a>Nom d'utilisateur</a>
-                    <input type="text">
+        <div class="loginForm padding flex">
+            <form action="" method="POST">
+                <div id="mail"> 
+                    <br>
+                    <label for="mail"> E-mail : </label>
+                    <br>
+                    <input type="email" id="mail" name="user_mail" required>
                 </div>
-                <div class="input-group">
-                    <a>Mot de passe</a>
-                    <input type="password">
+                <div id="mdp">
+                    <label for="password"> Mot de passe : </label>
+                    <br>
+                    <input type="password" id="password" name="user_password" required>
                 </div>
-                <div class="input-group">
-                    <button class="login" type="submit">Connexion</button>
+                <div class="btnLogin flex">
+                    <button class="LOGIN" type="submit">Connexion</button>
                 </div>
-                <div class="text">
-                    <a>Pas encore membre ?</a>
-                    <button class="register" onclick="window.location.href = 'register.php';">Créer un compte</button>
-                    <a class="link">Mot de passe oublié ?</a>
+            </form>
+        </div>
+
+        <div class="otherLogin padding flex">
+            <div class="O-inscription">
+                <p>Vous n'avez pas de compte ?</p>
+                <p>Incrivez-vous ici</p>
+                <br>
+                <div class="flex">
+                    <a class="REGISTER" href="/php_exam/register.php">Inscription</a>
                 </div>
             </div>
         </div>
-    </body>
+    </div>
+</body>
 </html>
