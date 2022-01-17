@@ -1,6 +1,3 @@
-<?php
-
-?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -48,11 +45,25 @@
                 <p class="obligation"></p>
                 <br>
                 <div class="clear flex">
-                    <button type="submit" class="signupbtn">Inscription</button>
-                    <a href="/index" class="cancelbtn">Annuler</a>
+                    <button type="submit" name="submit" class="signupbtn">Inscription</button>
+                    <a href="" class="cancelbtn">Annuler</a>
                 </div>
             </form>
         </div>
     </div> 
 </body>
 </html>
+
+<?php
+    include ("assets/php/loginDB.php");
+    loginDB();
+
+    if ($_POST['username'] != '' AND $_POST['psw'] != '' AND $_POST['email'] != '') {
+        $NewUser = $mysqli->query("INSERT INTO USERS(ID,USERNAME,PASSWORD,MAIL)");
+        $NewUser .= $mysqli->query("VALUES('','".$_POST['username']."','".$_POST['psw']."','".$_POST['email']."')");
+    } else {
+        echo "Erreur ! Veuillez remplir tous les champs !";
+    }
+
+
+?>

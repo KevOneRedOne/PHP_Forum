@@ -54,3 +54,17 @@
     </div>
 </body>
 </html>
+
+<?php
+    include("assets/php/loginDB.php");
+    loginDB();
+    $result = $mysqli->query("SELECT USERNAME, MAIL FROM users"); // On utilise l'instance créée pour faire une requête bidon
+    $nb_users = mysqli_num_rows($result);
+    while ($data = mysqli_fetch_array($result)){
+        echo htmlentities(trim($data['USERNAME']));
+        echo htmlentities(trim($data['MAIL']));
+    } 
+    
+    
+  
+?>
