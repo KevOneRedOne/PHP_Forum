@@ -25,10 +25,10 @@
         <p class="obligation">Remplissez ce formulaire d'adhésion</p>
         <br>
         <div class="RegisterForm flex padding">
-            <form  method="POST">
+            <form action="/php_exam/login.php" method="POST">
                 <div class="username">
                     <label for="username"> Pseudo : </label>
-                    <input type="text" placeholder="Entrez un Pseudo" name="username" required>
+                    <input type="text" placeholder="Entrez un Pseudo" name="user_name" required>
                 </div>
                 <div class="email">
                     <label for="email"> Email : </label>
@@ -46,7 +46,7 @@
                 <br>
                 <div class="clear flex">
                     <button type="submit" name="submit" class="signupbtn">Inscription</button>
-                    <a href="" class="cancelbtn">Annuler</a>
+                    <a href="/php_exam/login.php" class="cancelbtn">Annuler</a>
                 </div>
             </form>
         </div>
@@ -57,13 +57,22 @@
 <?php
     include ("assets/php/loginDB.php");
     loginDB();
+    // error_reporting(0);
 
-    if ($_POST['username'] != '' AND $_POST['psw'] != '' AND $_POST['email'] != '') {
-        $NewUser = $mysqli->query("INSERT INTO USERS(ID,USERNAME,PASSWORD,MAIL)");
-        $NewUser .= $mysqli->query("VALUES('','".$_POST['username']."','".$_POST['psw']."','".$_POST['email']."')");
-    } else {
-        echo "Erreur ! Veuillez remplir tous les champs !";
+    if (!isset($_POST['user_name'], $_POST['psw'], $_POST['email'])) {
+        // Could not get the data that should have been sent.
+        exit('Please complete the registration form!');
+    }
+    if (empty($_POST['user_name']) || empty($_POST['psw']) || empty($_POST['email'])) {
+        // One or more values are empty.
+        exit('Please complete the registration form');
     }
 
+    $checkuser = mysqli_query($mysqli, "SELECT * FROM `users` WHERE USERNAME= '".$_POST['user_name']."'");
+    if (mysqli_num_rows($checkuser)){
+        exit("Ce nom d'utilisateur existe déjà");
+    } else {
+        $NewUser = $mysqli->query("INSERT INTO `users`(ID, USERNAME, PASSWORD, MAIL) VALUES('','".$_POST['user_name']."','".$_POST['psw']."','".$_POST['email']."')");
+    }
 
 ?>
