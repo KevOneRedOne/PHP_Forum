@@ -1,0 +1,96 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+body { 
+    background-color: rgb(238, 238, 238);
+}
+.navbar {
+    width: 100%;
+    background-color: white;
+    font-size: large;
+}
+.navbar a {
+    text-decoration: none;
+    color: black;
+}
+.nav-cont {
+    height: 2.8rem;
+    margin-left: 20px;
+    margin-right: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.nav-r a {
+    padding: 15px;
+    border-radius: 3px;
+    margin: 2px;
+}
+.nav-r a:hover {
+    background-color: rgb(238, 238, 238);
+    cursor: pointer;
+}
+
+.container {
+    margin: auto;
+    width: 50rem;
+    background-color: white;
+    border-radius: 15px;
+    margin-top: 2rem;
+}
+
+.title {
+    text-align: center;
+    font-size: large;
+    padding: 8px;
+    border-bottom: solid 1px rgb(192, 192, 192);
+}
+
+.title a {
+    color: rgb(68, 68, 68);
+}
+
+.margcont {
+    width: 80%;
+    margin: auto;
+    margin-top: 20px;
+}
+
+textarea {
+    width: 100%;
+    min-height: 10rem;
+    padding: 8px;
+    border-radius: 10px;
+    border: solid 1px rgb(192, 192, 192);
+}
+
+.pub-opt {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.pub-opt a {
+    text-decoration: none;
+    color: rgb(0, 141, 223);
+}
+.pub-opt a:hover {
+    color: rgb(0, 105, 167);
+}
+
+button {
+    font-size: 1.05rem;
+    width: 7rem;
+    height: 2rem;
+    text-align: center;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    background-color: rgb(0, 151, 238);
+    border: 1px solid rgb(0, 82, 150);
+}
+button:hover {
+    background-color: rgb(0, 122, 221);
+    cursor: pointer;
+}
