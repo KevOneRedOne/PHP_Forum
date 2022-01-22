@@ -24,6 +24,7 @@
                         <a href="new.php">+</a>
                         <a href="login.php" onclick="logOut();">Déconnexion</a>
                         <a href="account.php">Compte</a>
+                        <a href="admin.php">ADMIN</a>
                     </div>
                 </div>
             </div>
