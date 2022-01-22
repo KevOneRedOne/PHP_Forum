@@ -39,7 +39,7 @@
                     </div>
                     <div class="message">
                         <a> Description : </a>
-                        <textarea id="description" name="description" style="resize: none;"></textarea>
+                        <textarea id="description" name="description" style="resize: none;" required></textarea>
                     </div>
                     <div class="date">
                         <br>
@@ -70,6 +70,10 @@
 
     $title = mysqli_real_escape_string($db,$_POST['titre_post']);
     $description = mysqli_real_escape_string($db,$_POST['description']);
+
+    if(empty($_POST['titre_post']) AND !empty($_POST['description'])){
+        
+    }
 
     if(!empty($_POST['titre_post']) AND !empty($_POST['description'])){
         $stmt = $db->prepare("INSERT INTO `articles` (`TITLE`, `DESCRIPTION`, `DATE_CREATION`, `ID_AUTHOR`) 
