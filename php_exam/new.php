@@ -34,9 +34,21 @@
                 <div class="margcont">
                     <div id="TitreduPost">
                         <a>Titre de l'Article : </a>
-                        <input type="titre" id="titre" name="titre" required>
+                        <input type="titre_post" id="titre_post" name="titre_post" required>
                     </div>
-                    <textarea id style="resize: none;"></textarea>
+                    <div class="message">
+                        <a> Description : </a>
+                        <textarea id="description" name="description" style="resize: none;"></textarea>
+                    </div>
+                    <div class="date">
+                        <br>
+                        <a style="margin-top:1vh;"id="datepost" name="datepost">
+                            <?php
+                                $date = date("Y-m-d H:i:s");
+                                echo "<p> $date </p>"; 
+                            ?>  
+                        </a>
+                    </div>
                     <div class="pub-opt">
                         <button type=submit>Publier</button>
                     </div>
@@ -47,6 +59,22 @@
 </html>
 <?php
     include("logoutDB.php");
+    // connexion à la base de données
+    $db_username = 'root';
+    $db_password = '';
+    $db_name     = 'php_exam_db';
+    $db_host     = 'localhost';
+    $db = mysqli_connect($db_host, $db_username, $db_password,$db_name)
+        or die('could not connect to database');
 
+    $title = mysqli_real_escape_string($db,$_POST['titre_post']);
+    $description = mysqli_real_escape_string($db,$_POST['description']);
 
+    if(!empty($_POST['titre_post']) AND !empty($_POST['description'])){
+        $stmt = $db->prepare("INSERT INTO `articles` (`TITLE`, `DESCRIPTION`, `DATE_CREATION`, `ID_AUTHOR`) 
+            VALUES ('$title', '$description', '$date', 
+            (SELECT ID FROM `users` WHERE USERNAME = '$user'));");
+        $stmt->execute();
+    }
+    mysqli_close($db); // fermer la connexion
 ?>
