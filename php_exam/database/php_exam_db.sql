@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : sam. 22 jan. 2022 à 22:48
+-- Généré le : sam. 22 jan. 2022 à 22:59
 -- Version du serveur : 10.4.22-MariaDB
 -- Version de PHP : 8.1.1
 
@@ -33,6 +33,16 @@ CREATE TABLE `admin` (
   `ADMIN_MAIL` varchar(80) NOT NULL,
   `ADMIN_PWD` varchar(80) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `admin`
+--
+
+INSERT INTO `admin` (`ID_ADMIN`, `USER_ADMIN`, `ADMIN_MAIL`, `ADMIN_PWD`) VALUES
+(1, 'Kevin', 'kevin@admin.fr', 'ecc4208a7778c1d76e7e89c5253128c5'),
+(2, 'Clement', 'clement@admin.fr', 'ecc4208a7778c1d76e7e89c5253128c5'),
+(3, 'Timothy', 'tim@admin.fr', 'ecc4208a7778c1d76e7e89c5253128c5'),
+(4, 'Admin', 'admin@admin.fr', 'ecc4208a7778c1d76e7e89c5253128c5');
 
 -- --------------------------------------------------------
 
@@ -124,7 +134,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT pour la table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `ID_ADMIN` int(12) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_ADMIN` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT pour la table `articles`
