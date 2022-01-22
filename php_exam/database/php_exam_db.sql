@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : sam. 22 jan. 2022 à 22:59
+-- Généré le : sam. 22 jan. 2022 à 23:02
 -- Version du serveur : 10.4.22-MariaDB
 -- Version de PHP : 8.1.1
 
@@ -63,16 +63,10 @@ CREATE TABLE `articles` (
 --
 
 INSERT INTO `articles` (`ID`, `TITLE`, `DESCRIPTION`, `DATE_CREATION`, `ID_AUTHOR`) VALUES
-(8, 'coucou', 'coucou', '2022-01-22', 21),
 (9, 'coucou', 'Je fais un test pour voir si ça fonctionnne', '2022-01-22', 21),
-(10, 'YES !!!!!', 'Il semblerait que cela fonctionne !!!', '2022-01-22', 21),
 (11, 'YES !!!!!', 'Il semblerait que cela fonctionne !!', '2022-01-22', 21),
 (12, 'coucou', 'un test de pls', '2022-01-22', 21),
 (13, 'Clement le boloss', 'Ah ouais tu sais pas chargé une DB ... :P', '2022-01-22', 21),
-(14, 'Nouveau test', 'Moi ça marche', '2022-01-22', 22),
-(15, 'Nouveau test', 'Moi ça marche', '2022-01-22', 22),
-(16, 'Nouveau test', 'Moi ça marche', '2022-01-22', 22),
-(17, 'Nouveau test', 'Moi ça marche', '2022-01-22', 22),
 (18, 'Nouveau test', 'Moi ça marche', '2022-01-22', 22),
 (19, 'coucou', 'coucou c\'est tim', '2022-01-22', 22);
 
