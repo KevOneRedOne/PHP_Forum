@@ -15,7 +15,7 @@
                         session_start();
                             if($_SESSION['username'] !== ""){
                                 $user = $_SESSION['username'];
-                                echo "<a>Bonjour $user, vous êtes connecté</a>";
+                                echo "<a>Bonjour $user, vous êtes connectés</a>";
                             }
                         ?>    
                         

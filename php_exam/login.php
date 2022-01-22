@@ -57,7 +57,7 @@
         $password = mysqli_real_escape_string($db,htmlspecialchars($_POST['user_password']));
         
         if($username !== "" && $userpwd !== ""){
-            $requete = "SELECT count(*) FROM users WHERE USERNAME = '".$username."'" AND "PASSWORD = '".$password."'";
+            $requete = "SELECT count(*) FROM `users` WHERE USERNAME='".$username."' AND PASSWORD='".$password."';";
             $exec_requete = mysqli_query($db,$requete);
             $reponse      = mysqli_fetch_array($exec_requete);
             $count = $reponse['count(*)'];
