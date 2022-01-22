@@ -30,19 +30,19 @@
             </div>
             <div class="container">
                 <?php
-                    $user = $_SESSION['username'];
+                    
                     
                     echo 
                     '<div class="articles">
                         <a href="details.php"
-                            <a class="username"> '.$user.' </a>
+                            <a class="username"></a>
                             <a class="date">t</a>
                             <a class="titre">t</a>
                             <a class="description">t</a>
                         </a>
                     </div>'
                 ?>
-                <!-- <div class="articles">
+                <div class="articles">
                     <a href="details.php">
                         <a class="username">
                             <?php
@@ -52,7 +52,7 @@
                         <div class="description">
                             <a>description</a>
                         </div>
-                    </a> -->
+                    </a>
                 </div>
                 <div class="divider"></div>
             </div>

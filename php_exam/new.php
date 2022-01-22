@@ -59,6 +59,7 @@
     </body>
 </html>
 <?php
+    error_reporting(0);
     // connexion à la base de données
     $db_username = 'root';
     $db_password = '';
