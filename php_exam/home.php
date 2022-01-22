@@ -29,15 +29,30 @@
                 </div>
             </div>
             <div class="container">
-                <div class="articles">
+                <?php
+                    $user = $_SESSION['username'];
+                    
+                    echo 
+                    '<div class="articles">
+                        <a href="details.php"
+                            <a class="username"> '.$user.' </a>
+                            <a class="date">t</a>
+                            <a class="titre">t</a>
+                            <a class="description">t</a>
+                        </a>
+                    </div>'
+                ?>
+                <!-- <div class="articles">
                     <a href="details.php">
-                        <a class="username">Username</a>
+                        <a class="username">
+                            <?php
+                            ?>
+                        </a>
                         <a class="date">01/01/2022</a>
                         <div class="description">
                             <a>description</a>
                         </div>
-                        <img src="" alt="">
-                    </a>
+                    </a> -->
                 </div>
                 <div class="divider"></div>
             </div>
@@ -47,4 +62,7 @@
 
 <?php
     include("logoutDB.php");
+    include("loginDB.php");
+    loginDB();
+
 ?>
