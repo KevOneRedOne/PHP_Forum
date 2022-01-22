@@ -54,7 +54,7 @@
             or die('could not connect to database');
 
         $username = mysqli_real_escape_string($db,htmlspecialchars($_POST['username'])); 
-        $password = mysqli_real_escape_string($db,htmlspecialchars($_POST['user_password']));
+        $password = mysqli_real_escape_string($db,htmlspecialchars(sha1($_POST['user_password'])));
         
         if($username !== "" && $userpwd !== ""){
             $requete = "SELECT count(*) FROM `users` WHERE USERNAME='".$username."' AND PASSWORD='".$password."';";
