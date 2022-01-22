@@ -12,15 +12,23 @@
                     <a href="home.php">Forum</a>
                     <div class="nav-r">
                         <?php
-                        session_start();
-                            if($_SESSION['username'] !== ""){
+                            session_start();
+                            if(!isset($_SESSION["username"])){
+                                header("Location: login.php");
+                                exit(); 
+                            }
+                            elseif($_SESSION['username'] !== ""){
                                 $user = $_SESSION['username'];
                                 echo "<a>Bonjour $user, vous êtes connectés</a>";
                             }
-                        ?>    
-                        
+                        ?>  
                         <a href="new.php">+</a>
-                        <a href="login.php">Deconnexion</a>
+                        <a href="login.php">
+                            Deconnexion
+                            <?php
+                                session_destroy();
+                            ?>
+                        </a>
                         <a href="account.php">Compte</a>
                     </div>
                 </div>
