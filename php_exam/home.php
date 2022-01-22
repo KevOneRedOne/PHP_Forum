@@ -47,7 +47,7 @@
                         <div id="rigth">
                             <div class="info ">
                                 <div id="username">
-                                    <a href="details.php">
+                                    <p>
                                         <?php
                                             $id_author = $reponse['ID_AUTHOR'];
                                             $request = "SELECT users.USERNAME FROM `articles`INNER JOIN `users` ON users.ID = articles.ID_AUTHOR
@@ -56,14 +56,19 @@
                                             $rep = mysqli_fetch_array($exec);
                                             echo $rep['USERNAME'];
                                         ?>
-                                    </a>
+                                    </p>
                                 </div>
                                 <div id="titre">
                                     <p class="titre"><?php echo $reponse['TITLE']?></p>
                                 </div>
                             </div>
                             <div class="btn">
-                                <button>Voir l'Article</button>
+                               <?php
+                                    $idpost = $reponse['ID'];
+                                    $href ="details.php?id=";
+                                    $href.=$idpost;
+                                    echo "<a href='".$href."'>Voir Plus</a>";
+                                ?>
                             </div>
                         </div>
                     </div>
