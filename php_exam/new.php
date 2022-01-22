@@ -11,8 +11,8 @@
                     <a href="home.php">Forum</a>
                     <div class="nav-r">
                         <a href="new.php">+</a>
-                        <a href="login.php">deconnexion</a>
-                        <a href="account.php">Nom</a>
+                        <a href="login.php">Deconnexion</a>
+                        <a href="account.php">Compte</a>
                     </div>
                 </div>
             </div>

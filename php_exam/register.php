@@ -1,36 +1,3 @@
-<?php
-    include("assets/php/loginDB.php");
-    loginDB();
-
-    if(isset($_POST['submit']))
-    {
-        // Récuperation des input
-        $username = $_POST['username'];
-        $email = $_POST['email'];
-        $password = sha1($_POST['password']); // sha1 hache le mdp
-        $password2 = sha1($_POST['password2']);
-
-        if(!empty($_POST['username']) AND !empty($_POST['email']) AND !empty($_POST['password']) AND !empty($_POST['password2']))
-        {
-            if(filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                if($password == $password2) {
-                    $stmt = $mysqli->prepare("INSERT INTO users(USERNAME, MAIL, PASSWORD) VALUES ('$username', '$email', '$password')");
-                    $stmt->execute();
-                    header('Location: home.php');
-
-                } else {
-                    $error = "Les mots de passe ne correspondent pas.";
-                }
-            } else {
-                $error = "Adresse e-mail non valide.";
-            }
-        } else {
-            $error = "Tous les champs doivent être complétés.";
-        }
-    }
-
-?>
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -70,3 +37,35 @@
         </form>
     </body>
 </html>
+<?php
+    include("assets/php/loginDB.php");
+    loginDB();
+
+    if(isset($_POST['submit']))
+    {
+        // Récuperation des input
+        $username = $_POST['username'];
+        $email = $_POST['email'];
+        $password = sha1($_POST['password']); // sha1 hache le mdp
+        $password2 = sha1($_POST['password2']);
+
+        if(!empty($_POST['username']) AND !empty($_POST['email']) AND !empty($_POST['password']) AND !empty($_POST['password2']))
+        {
+            if(filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                if($password == $password2) {
+                    $stmt = $mysqli->prepare("INSERT INTO users(USERNAME, MAIL, PASSWORD) VALUES ('$username', '$email', '$password')");
+                    $stmt->execute();
+                    header('Location: home.php');
+
+                } else {
+                    $error = "Les mots de passe ne correspondent pas.";
+                }
+            } else {
+                $error = "Adresse e-mail non valide.";
+            }
+        } else {
+            $error = "Tous les champs doivent être complétés.";
+        }
+    }
+
+?>
