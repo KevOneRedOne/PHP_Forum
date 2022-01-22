@@ -42,7 +42,6 @@
 </html>
 
 <?php
-    include("assets/php/loginDB.php");
     session_start();
 
     if (isset($_POST['username']) && isset($_POST['user_password'])){
