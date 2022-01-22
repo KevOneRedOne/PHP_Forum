@@ -38,7 +38,7 @@
     </body>
 </html>
 <?php
-    include("assets/php/loginDB.php");
+    include("loginDB.php");
     loginDB();
 
     if(isset($_POST['submit']))

@@ -23,12 +23,7 @@
                             }
                         ?>  
                         <a href="new.php">+</a>
-                        <a href="login.php">
-                            Deconnexion
-                            <?php
-                                session_destroy();
-                            ?>
-                        </a>
+                        <a href="login.php" onclick="logOut();">Déconnexion</a>
                         <a href="account.php">Compte</a>
                     </div>
                 </div>
@@ -49,3 +44,7 @@
         </form>
     </body>
 </html>
+
+<?php
+    include("logoutDB.php");
+?>

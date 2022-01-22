@@ -6,7 +6,7 @@
     </head>
     <body>
         <form action="" method="POST">
-        <div class="navbar">
+            <div class="navbar">
                 <div class="nav-cont">
                     <a href="home.php">Forum</a>
                     <div class="nav-r">
@@ -22,12 +22,7 @@
                             }
                         ?>    
                         <a href="new.php">+</a>
-                        <a href="login.php">
-                            Deconnexion
-                            <?php
-                                session_destroy();
-                            ?>
-                        </a>
+                        <a href="login.php" onclick="logOut();">Déconnexion</a>
                         <a href="account.php">Compte</a>
                     </div>
                 </div>
@@ -37,10 +32,13 @@
                     <a>Créer un nouvel article</a>
                 </div>
                 <div class="margcont">
-                    <textarea style="resize: none;"></textarea>
+                    <div id="TitreduPost">
+                        <a>Titre de l'Article : </a>
+                        <input type="titre" id="titre" name="titre" required>
+                    </div>
+                    <textarea id style="resize: none;"></textarea>
                     <div class="pub-opt">
-                        <a href="">Ajouter une photo</a>
-                        <button>Publier</button>
+                        <button type=submit>Publier</button>
                     </div>
                 </div>
             </div>
@@ -48,7 +46,7 @@
     </body>
 </html>
 <?php
-
+    include("logoutDB.php");
 
 
 ?>

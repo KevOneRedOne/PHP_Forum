@@ -66,10 +66,21 @@ textarea {
     border: solid 1px rgb(192, 192, 192);
 }
 
+input {
+    width: 98.5%;
+    padding-left: 2%;
+    padding-right: 2%;
+    height: 2rem;
+    text-align: left;
+    border-radius: 5px;
+    border: solid 1px rgb(192, 192, 192);
+    background-color: white;
+    margin-bottom: 15px;
+}
 .pub-opt {
     margin-top: 10px;
     display: flex;
-    justify-content: space-between;
+    justify-content: end;
 }
 
 .pub-opt a {
