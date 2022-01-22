@@ -28,11 +28,33 @@
                 </div>
             </div>
             <div class="container">
+                <?php
+                    include("loginDB.php");
+                    loginDB();
+                    $idPost = $_GET['id'];
+                    //POST
+                    $requete = "SELECT * FROM articles WHERE ID='".$idPost."'";
+                    $exec = mysqli_query($mysqli,$requete);
+                    $rep = mysqli_fetch_array($exec);
+                    // Username
+                    $requete2 = "SELECT users.USERNAME FROM articles INNER JOIN `users` ON users.ID = articles.ID_AUTHOR 
+                    WHERE articles.ID='".$idPost."'";
+                    $exec2 = mysqli_query($mysqli,$requete2);
+                    $rep2 = mysqli_fetch_array($exec2);
+                ?>
                 <div class="articles">
-                    <a class="username">Username</a>
-                    <a class="date">01/01/2022</a>
+                    <div id="username">
+                        <p><?php echo $rep2['USERNAME'];?></p>
+                    </div>
+                    <div class="date">
+                        <p>Date : </p>
+                        <p><?php echo $rep['DATE_CREATION']?></p>
+                    </div>
+                    <div id="titre">
+                        <p class="titre"><?php echo $rep['TITLE']?></p>
+                    </div>
                     <div class="description">
-                        <a>description</a>
+                        <p class="description"><?php echo $rep['DESCRIPTION']?></a>
                     </div>
                 </div>
                 <div class="divider"></div>
