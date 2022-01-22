@@ -18,8 +18,9 @@
                             }
                             elseif($_SESSION['username'] !== ""){
                                 $user = $_SESSION['username'];
-                                echo "<a>Bonjour $user, vous êtes connectés</a>";
+                                echo "<a>Bonjour ".$user.", vous êtes connectés</a>";
                             }
+                            include("logoutDB.php");
                         ?>    
                         <a href="new.php">+</a>
                         <a href="login.php" onclick="logOut();">Déconnexion</a>
@@ -58,7 +59,6 @@
     </body>
 </html>
 <?php
-    include("logoutDB.php");
     // connexion à la base de données
     $db_username = 'root';
     $db_password = '';
