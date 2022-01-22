@@ -40,55 +40,11 @@ body {
     border-left: solid 1px rgb(192, 192, 192);
     border-right: solid 1px rgb(192, 192, 192);
 }
-.margcont {
-    margin-right: 50px;
-    margin-left: 50px;
-}
-
-.account {
-    font-size: 1.5rem;
-    padding-top: 10px;
-    margin-bottom: 15px;
-}
-
-.inputgroup {
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
-input {
-    height: 1.5rem;
-    background-color: white;
-    border: 1px solid rgb(192, 192, 192);
-    border-radius: 5px;
-    padding-left: 5px;
-    padding-right: 5px;
-}
-
-button {
-    font-size: 0.8rem;
-    width: 5rem;
-    height: 1.7rem;
-    text-align: center;
-    border-radius: 10px;
-    margin-bottom: 10px;
-    background-color: rgb(0, 151, 238);
-    border: 1px solid rgb(0, 82, 150);
-    color: white;
-}
-button:hover {
-    background-color: rgb(0, 122, 221);
-    cursor: pointer;
-}
-
-.publication {
-    font-size: 1.5rem;
-    margin-top: 20px;
-}
 
 .articles {
     padding-top: 15px;
-    padding-bottom: 15px;
+    margin-right: 50px;
+    margin-left: 50px;
 }
 
 .username {
@@ -118,4 +74,11 @@ img {
     background-color: rgb(192, 192, 192);
     width: 100%;
     height: 1px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.comment {
+    width: 70%;
+    margin: auto;
 }
