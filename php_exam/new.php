@@ -71,10 +71,6 @@
     $title = mysqli_real_escape_string($db,$_POST['titre_post']);
     $description = mysqli_real_escape_string($db,$_POST['description']);
 
-    if(empty($_POST['titre_post']) AND !empty($_POST['description'])){
-        
-    }
-
     if(!empty($_POST['titre_post']) AND !empty($_POST['description'])){
         $stmt = $db->prepare("INSERT INTO `articles` (`TITLE`, `DESCRIPTION`, `DATE_CREATION`, `ID_AUTHOR`) 
             VALUES ('$title', '$description', '$date', 

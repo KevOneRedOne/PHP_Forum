@@ -30,30 +30,46 @@
             </div>
             <div class="container">
                 <?php
-                    
-                    
-                    echo 
-                    '<div class="articles">
-                        <a href="details.php"
-                            <a class="username"></a>
-                            <a class="date">t</a>
-                            <a class="titre">t</a>
-                            <a class="description">t</a>
-                        </a>
-                    </div>'
-                ?>
-                <div class="articles">
-                    <a href="details.php">
-                        <a class="username">
-                            <?php
-                            ?>
-                        </a>
-                        <a class="date">01/01/2022</a>
-                        <div class="description">
-                            <a>description</a>
+                    include("loginDB.php");
+                    loginDB();
+
+                    $requete = "SELECT * FROM articles";
+                    $exec_req = mysqli_query($mysqli,$requete);
+                ?>   
+                <?php while($reponse = mysqli_fetch_array($exec_req)){?>
+                    <div class="articles ">
+                        <div class="left">
+                            <div class="date">
+                                <p>Date : </p>
+                                <p><?php echo $reponse['DATE_CREATION']?></p>
+                            </div>
                         </div>
-                    </a>
-                </div>
+                        <div id="rigth">
+                            <div class="info ">
+                                <div id="username">
+                                    <a href="details.php">
+                                        <?php
+                                            $id_author = $reponse['ID_AUTHOR'];
+                                            $request = "SELECT users.USERNAME FROM `articles`INNER JOIN `users` ON users.ID = articles.ID_AUTHOR
+                                            WHERE articles.ID_AUTHOR = '".$id_author."';"; 
+                                            $exec = mysqli_query($mysqli,$request);
+                                            $rep = mysqli_fetch_array($exec);
+                                            echo $rep['USERNAME'];
+                                        ?>
+                                    </a>
+                                </div>
+                                <div id="titre">
+                                    <p class="titre"><?php echo $reponse['TITLE']?></p>
+                                </div>
+                            </div>
+                            <div class="btn">
+                                <button>Voir l'Article</button>
+                            </div>
+                        </div>
+                    </div>
+                <?php }
+                // mysqli_close();
+                ?>
                 <div class="divider"></div>
             </div>
         </form>
@@ -62,7 +78,5 @@
 
 <?php
     include("logoutDB.php");
-    include("loginDB.php");
-    loginDB();
-
+    
 ?>

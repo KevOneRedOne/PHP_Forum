@@ -34,17 +34,8 @@
                     <div class="description">
                         <a>description</a>
                     </div>
-                    <img src="" alt="">
                 </div>
                 <div class="divider"></div>
-                <div class="comment">
-                    <a class="username">Username</a>
-                    <a class="date">01/01/2022</a>
-                    <div>
-                        <a>Commentaire</a>
-                    </div>
-                    <div class="divider"></div>
-                </div>
             </div>
         </form>
     </body>
