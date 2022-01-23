@@ -1,7 +1,7 @@
 <?php
     include("loginDB.php");
     loginDB();
-    error_reporting(0);
+    // error_reporting(0);
 ?>
 <!DOCTYPE html>
 <html>
@@ -43,7 +43,7 @@
                     <div class="inputgroup">
                         <a>Changer e-mail</a><br>
                         <?php 
-                            $requeteMail = "SELECT MAIL from users where USERNAME ='".$user."';";
+                            $requeteMail = "SELECT MAIL, PASSWORD from users where USERNAME ='".$user."';";
                             $executerequete = mysqli_query($mysqli,$requeteMail);
                             $repExec = mysqli_fetch_array($executerequete);
                         ?>
@@ -58,15 +58,15 @@
                     ?>  
                     <div class="inputgroup">
                         <a>Changer de mot de passe</a><br>
-                        <input type="password" placeholder="Entrez un nouveau MDP" name="psw" required>
+                        <input type="password" placeholder="Entrez un nouveau MDP" name="psw">
                         <button type="submit">Changer</button>
+                        <p>(Entrer à nouveau votre mot de passe si vous ne souhaitez pas changer.)</p>
                     </div>
+                    <div class="divider"></div>
                     <?php
-                        if($_POST['psw'] !== ""){
-                            $password = mysqli_real_escape_string($mysqli,$_POST['psw']);   
-                            $stmt2 = $mysqli ->prepare ("UPDATE `users` SET PASSWORD=sha1('".$password."') WHERE USERNAME='".$user."';");
-                            $stmt2->execute();
-                        }
+                        $password = mysqli_real_escape_string($mysqli,$_POST['psw']);     
+                        $stmt2 = $mysqli ->prepare ("UPDATE `users` SET PASSWORD=sha1('".$password."') WHERE USERNAME='".$user."';");
+                        $stmt2->execute();
                     ?>
                     <div>
                         <div class="publication">
@@ -84,37 +84,36 @@
                             $exec_req2 = mysqli_query($mysqli,$requete2);
                         ?>   
                         <?php while($reponse = mysqli_fetch_array($exec_req2)){?>
-                            <div class="articles flex">
-                                <div class="left">
+                            <div class="articles">
+                                <div class="left flex">
+                                    <div class="username">
+                                        <a>
+                                            <?php
+                                                $id_author = $reponse['ID_AUTHOR'];
+                                                $request = "SELECT users.USERNAME FROM `articles`INNER JOIN `users` ON users.ID = articles.ID_AUTHOR
+                                                WHERE articles.ID_AUTHOR = '".$id_author."';"; 
+                                                $exec = mysqli_query($mysqli,$request);
+                                                $rep2 = mysqli_fetch_array($exec);
+                                                echo $rep2['USERNAME'];
+                                            ?>
+                                        </a>
+                                    </div>
                                     <div class="date">
-                                        <p>Date : </p>
                                         <p><?php echo $reponse['DATE_CREATION']?></p>
                                     </div>
-                                    <div class="date">
-                                        <p>ID : </p>
-                                        <p><?php echo $reponse['ID']?></p>
-                                    </div>
                                 </div>
+                                <div class="divider"></div>
                                 <div id="rigth">
                                     <div class="info">
-                                        <div class="username flex">
-                                            <a>
-                                                <?php
-                                                    $id_author = $reponse['ID_AUTHOR'];
-                                                    $request = "SELECT users.USERNAME FROM `articles`INNER JOIN `users` ON users.ID = articles.ID_AUTHOR
-                                                    WHERE articles.ID_AUTHOR = '".$id_author."';"; 
-                                                    $exec = mysqli_query($mysqli,$request);
-                                                    $rep2 = mysqli_fetch_array($exec);
-                                                    echo $rep2['USERNAME'];
-                                                ?>
-                                            | </a>
-                                            <div id="titre">
-                                                <p class="titre"> Sujet : <?php echo $reponse['TITLE']?></p>
-                                            </div>
-                                            <div id="description">
-                                                <p class="titre"> Description : <?php echo $reponse['DESCRIPTION']?></p>
-                                            </div>
+                                        <div id="titre">
+                                            <p class="titre"><b>Sujet : </b><?php echo $reponse['TITLE']?></p>
                                         </div>
+                                        <div class="divider"></div>
+                                        <br>
+                                        <div id="description">
+                                            <p class="titre"><b>Description : </b><?php echo $reponse['DESCRIPTION']?></p>
+                                        </div>
+                                        
                                     </div>
                                 </div>
                             </div>
