@@ -72,10 +72,6 @@
                     ?>
                 </div>
             </div>
-            <?php
-                //test
-                
-            ?>
         </form>
     </body>
 </html>
