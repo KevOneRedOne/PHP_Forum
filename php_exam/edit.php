@@ -1,4 +1,5 @@
 <?php
+    error_reporting(0);
     $mysqli = new mysqli("localhost", "root", "", "php_exam_db");
     global $urlid;
     $urlid = $_GET['id'];
