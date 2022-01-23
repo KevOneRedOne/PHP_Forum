@@ -66,6 +66,6 @@
         } else {
             header('Location: admin.php?erreur=2'); // utilisateur ou mot de passe vide
         }
-        mysqli_close($db); // fermer la connexion
+        mysqli_close($db);
     }
 ?>
