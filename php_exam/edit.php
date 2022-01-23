@@ -52,7 +52,7 @@
                 </div>
             </div>
             <?php
-                
+                //test
                 $titre = $_POST['titre'];
                 $description = $_POST['description'];
                 $urlid = $_GET['id'];
