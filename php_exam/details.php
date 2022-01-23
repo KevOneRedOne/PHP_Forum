@@ -1,55 +1,70 @@
 <!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projet Forum</title>
-    <link rel="stylesheet" href="assets/css/register.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
-</head>
-<body>
-    <header>
-        <nav class="navbar">
-            <div id="forum_tittle">
-                <a href="/php_exam/home.php">Forum</a>  
+<html>
+    <head>
+        <link rel="stylesheet" href="assets/css/details.css">
+        <title>Details</title>
+    </head>
+    <body>
+        <form action="" method="POST">
+            <div class="navbar">
+                <div class="nav-cont">
+                    <a href="home.php">Forum</a>
+                    <div class="nav-r">
+                        <?php
+                            session_start();
+                            if(!isset($_SESSION["username"])){
+                                header("Location: login.php");
+                                exit(); 
+                            }
+                            elseif($_SESSION['username'] !== ""){
+                                $user = $_SESSION['username'];
+                                echo "<a>Bonjour $user, vous êtes connectés</a>";
+                            }
+                        ?>  
+                        <a href="new.php">+</a>
+                        <a href="login.php" onclick="logOut();">Déconnexion</a>
+                        <a href="account.php">Compte</a>
+                        <a href="admin.php">ADMIN</a>
+                        
+                    </div>
+                </div>
             </div>
-        </nav>
-    </header>
-
-    <div class="registration">
-        <div class="L-Title flex padding">
-            <h1>Inscription</h1>
-        </div>
-        <p class="obligation">Details</p>
-        <br>
-        <div class="RegisterForm flex padding">
-            <form action="/php_exam/login.php" method="POST">
-                <div class="username">
-                    <label for="username"> Pseudo : </label>
-                    <input type="text" placeholder="Entrez un Pseudo" name="user_name" required>
+            <div class="container">
+                <?php
+                    include("loginDB.php");
+                    loginDB();
+                    $idPost = $_GET['id'];
+                    //POST
+                    $requete = "SELECT * FROM articles WHERE ID='".$idPost."'";
+                    $exec = mysqli_query($mysqli,$requete);
+                    $rep = mysqli_fetch_array($exec);
+                    // Username
+                    $requete2 = "SELECT users.USERNAME FROM articles INNER JOIN `users` ON users.ID = articles.ID_AUTHOR 
+                    WHERE articles.ID='".$idPost."'";
+                    $exec2 = mysqli_query($mysqli,$requete2);
+                    $rep2 = mysqli_fetch_array($exec2);
+                ?>
+                <div class="articles">
+                    <div id="username">
+                        <p><?php echo $rep2['USERNAME'];?></p>
+                    </div>
+                    <div class="date">
+                        <p>Date : </p>
+                        <p><?php echo $rep['DATE_CREATION']?></p>
+                    </div>
+                    <div id="titre">
+                        <p class="titre"><?php echo $rep['TITLE']?></p>
+                    </div>
+                    <div class="description">
+                        <p class="description"><?php echo $rep['DESCRIPTION']?></a>
+                    </div>
                 </div>
-                <div class="email">
-                    <label for="email"> Email : </label>
-                    <input type="email" placeholder="Entrez votre email" name="email" required>
-                </div>
-                <div class="password">
-                    <label for="password"> Mot de Passe : </label>
-                    <input type="password" placeholder="Entrez un mot de passe" name="psw" required>
-                </div>
-                <div class="psw-repeat">
-                    <label for="psw-repeat"> Confirmez le Mot de Passe : </label>
-                    <input type="password" placeholder="Réecrivez le mot de passe" name="psw_repeat" required>
-                </div>
-                <p class="obligation"></p>
-                <br>
-                <div class="clear flex">
-                    <button type="submit" name="submit" class="signupbtn">Inscription</button>
-                    <a href="/php_exam/login.php" class="cancelbtn">Annuler</a>
-                </div>
-            </form>
-        </div>
-    </div> 
-</body>
+                <div class="divider"></div>
+            </div>
+        </form>
+    </body>
 </html>
+
+<?php
+    include("logoutDB.php");
+?>
