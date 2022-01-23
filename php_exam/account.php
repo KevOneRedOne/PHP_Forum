@@ -1,7 +1,7 @@
 <?php
     include("loginDB.php");
     loginDB();
-    // error_reporting(0);
+    error_reporting(0);
 ?>
 <!DOCTYPE html>
 <html>
