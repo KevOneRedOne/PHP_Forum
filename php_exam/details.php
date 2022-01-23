@@ -23,7 +23,7 @@
                         ?>  
                         <a href="new.php">+</a>
                         <a href="login.php" onclick="logOut();">Déconnexion</a>
-                        <a href="account.php">Compte</a>
+                        <a href="account.php"><?php echo $user?></a>
                         <a href="admin.php">ADMIN</a>
                         
                     </div>
@@ -57,6 +57,14 @@
                     </div>
                     <div class="description">
                         <p class="description"><?php echo $rep['DESCRIPTION']?></a>
+                    </div>
+                    <div id="btn">
+                        <?php
+                            $href ="edit.php?id=";
+                            $href.=$idPost;
+                            echo "<a href='".$href."'>MODIFIER</a>";
+                        ?>
+                            <a href=""></a>
                     </div>
                 </div>
                 <div class="divider"></div>

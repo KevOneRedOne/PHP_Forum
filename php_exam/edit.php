@@ -36,7 +36,7 @@
             </div>
             <div class="container">
                 <div class="articles">
-                    <a class="username"><?php echo $username; ?></a>
+                    <a class="username"><?php echo $user; ?></a>
                     <?php       
                         $requete2 = "SELECT TITLE, DATE_CREATION, DESCRIPTION FROM articles WHERE ID = '".$urlid."';";
                         $exec2 = mysqli_query($mysqli, $requete2);
