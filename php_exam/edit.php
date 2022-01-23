@@ -38,19 +38,26 @@
             </div>
             <div class="container">
                 <div class="articles">
-                    <a class="username"><?php echo $user_post; ?></a>
-                    <?php       
-                        $requete2 = "SELECT TITLE, DATE_CREATION,DESCRIPTION FROM articles WHERE articles.ID = '".$urlid."';";
-                        $exec2 = mysqli_query($mysqli, $requete2);
-                        while($rep = mysqli_fetch_array($exec2)){
-                    ?>
-                    <a class="date"><?php echo $rep['DATE_CREATION']?></a>
+                    <div class="top flex">
+                        <div id="user">
+                            <a class="username"><?php echo $user_post; ?></a>
+                        </div>
+                        <div id="date">
+                            <?php       
+                                $requete2 = "SELECT TITLE, DATE_CREATION,DESCRIPTION FROM articles WHERE articles.ID = '".$urlid."';";
+                                $exec2 = mysqli_query($mysqli, $requete2);
+                                while($rep = mysqli_fetch_array($exec2)){
+                            ?>
+                            <a class="date"><?php echo $rep['DATE_CREATION']?></a>
+                        </div>
+                    </div>
                     <br>
                     <a class="titre">Modifier le titre :</a>
+                    <br>
                     <input class="titre" id="titre" name='titre' placeholder="<?php echo $rep['TITLE']?>" required></input>
                     <br>
-                    <br>
                     <a class="titre">Modifier le texte :</a>
+                    <br>
                     <textarea style="resize: none;" placeholder="<?php echo $rep['DESCRIPTION']?>" name="description" id ="description" required></textarea>
                     <?php }; //close while loop ?>
                     <div class="btn-cont">

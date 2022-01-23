@@ -45,31 +45,39 @@
                     $rep2 = mysqli_fetch_array($exec2);
                 ?>
                 <div class="articles">
-                    <div id="username">
-                        <p><?php echo $rep2['USERNAME'];?></p>
+                    <div class="top flex">
+                        <div id="username">
+                            <p><b><?php echo $rep2['USERNAME'];?></b></p>
+                        </div>
+                        <div class="date">
+                            <p><?php echo $rep['DATE_CREATION']?></p>
+                        </div>
                     </div>
-                    <div class="date">
-                        <p>Date : </p>
-                        <p><?php echo $rep['DATE_CREATION']?></p>
+                    <div class="divider"></div>
+                    <div class="titre flexcenter">
+                        <p class="titre"><b>Titre : </b><?php echo $rep['TITLE']?></p>
                     </div>
-                    <div id="titre">
-                        <p class="titre"><?php echo $rep['TITLE']?></p>
-                    </div>
+                    <div class="divider"></div>
                     <div class="description">
+                        <p><b>Description : </b></p>
+                        <br>
                         <p class="description"><?php echo $rep['DESCRIPTION']?></a>
                     </div>
-                    <div id="btn">
+                    <br>
+                    <div class="divider"></div>
+                    <br>
+                    <div class="btn">
                         <?php
                             if($rep2['USERNAME'] == $user){
                                 $href ="edit.php?id=";
                                 $href.=$idPost;
                                 $href .="&username=";
                                 $href .=$rep2['USERNAME'];
-                                echo "<a href='".$href."'>MODIFIER</a>";
+                                echo "<a href='".$href."'>Modifier</a>";
                             }
                         ?>
-                            <a href=""></a>
                     </div>
+                    <br>
                 </div>
                 <div class="divider"></div>
             </div>

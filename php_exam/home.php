@@ -38,7 +38,7 @@
                     $exec_req = mysqli_query($mysqli,$requete);
                 ?>   
                 <?php while($reponse = mysqli_fetch_array($exec_req)){?>
-                    <div class="articles ">
+                    <div class="articles flex">
                         <div class="left">
                             <div class="date">
                                 <p>Date : </p>
@@ -46,9 +46,9 @@
                             </div>
                         </div>
                         <div id="rigth">
-                            <div class="info ">
-                                <div id="username">
-                                    <p>
+                            <div class="info">
+                                <div class="username flex">
+                                    <a>
                                         <?php
                                             $id_author = $reponse['ID_AUTHOR'];
                                             $request = "SELECT users.USERNAME FROM `articles`INNER JOIN `users` ON users.ID = articles.ID_AUTHOR
@@ -57,22 +57,22 @@
                                             $rep = mysqli_fetch_array($exec);
                                             echo $rep['USERNAME'];
                                         ?>
-                                    </p>
-                                </div>
-                                <div id="titre">
-                                    <p class="titre"><?php echo $reponse['TITLE']?></p>
+                                     | </a>
+                                    <div id="titre">
+                                        <p class="titre"> Sujet : <?php echo $reponse['TITLE']?></p>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="btn">
-                               <?php
-                                    $idpost = $reponse['ID'];
-                                    $href ="details.php?id=";
-                                    $href.=$idpost;
-                                    $href .="&username=";
-                                    $href .=$rep['USERNAME'];
-                                    echo "<a href='".$href."'>Voir Plus</a>";
-                                ?>
-                            </div>
+                        </div>
+                        <div class="btn">
+                           <?php
+                                $idpost = $reponse['ID'];
+                                $href ="details.php?id=";
+                                $href.=$idpost;
+                                $href .="&username=";
+                                $href .=$rep['USERNAME'];
+                                echo "<a href='".$href."'>Voir Plus</a>";
+                            ?>
                         </div>
                     </div>
                 <?php }
@@ -86,5 +86,4 @@
 
 <?php
     include("logoutDB.php");
-    
 ?>
