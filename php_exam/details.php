@@ -8,7 +8,7 @@
         <form action="" method="POST">
             <div class="navbar">
                 <div class="nav-cont">
-                    <a href="home.php">Forum</a>
+                    <a href="home.php">Home</a>
                     <div class="nav-r">
                         <?php
                             session_start();

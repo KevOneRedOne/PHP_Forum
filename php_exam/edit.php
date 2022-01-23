@@ -15,7 +15,7 @@
         <form method="POST" action="">
             <div class="navbar">
                 <div class="nav-cont">
-                    <a href="home.php">Forum</a>
+                    <a href="home.php">Home</a>
                     <div class="nav-r">
                         <?php
                             session_start();
@@ -47,11 +47,11 @@
                     <a class="date"><?php echo $rep['DATE_CREATION']?></a>
                     <br>
                     <a class="titre">Modifier le titre :</a>
-                    <input class="titre" id="titre" name='titre' placeholder="<?php echo $rep['TITLE']?>"></input>
+                    <input class="titre" id="titre" name='titre' placeholder="<?php echo $rep['TITLE']?>" required></input>
                     <br>
                     <br>
                     <a class="titre">Modifier le texte :</a>
-                    <textarea style="resize: none;" placeholder="<?php echo $rep['DESCRIPTION']?>" name="description" id ="description"></textarea>
+                    <textarea style="resize: none;" placeholder="<?php echo $rep['DESCRIPTION']?>" name="description" id ="description" required></textarea>
                     <?php }; //close while loop ?>
                     <div class="btn-cont">
                         <button class="save" type="submit" name="save" >Enregistrer</button>
@@ -64,9 +64,6 @@
                 $description = $_POST['description'];
                 $urlid = $_GET['id'];
                 $stmt = $mysqli->prepare("UPDATE `articles` SET `TITLE` = '".$titre."', `DESCRIPTION` = '".$description."' WHERE articles.ID= '".$urlid."';");
-                echo $urlid;
-                echo $titre;
-                echo $description;
                 $stmt->execute();
             ?>
         </form>
