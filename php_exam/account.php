@@ -51,19 +51,19 @@
                         <button type="submit">Changer</button>
                     </div>
                     <?php
-                        $mail = $_POST['email'];
+                        $mail = mysqli_real_escape_string($mysqli, $_POST['email']);
                         $stmt = $mysqli ->prepare ("UPDATE `users` SET MAIL='".$mail."' WHERE USERNAME='".$user."';");
                         $stmt->execute();
                         
                     ?>  
                     <div class="inputgroup">
                         <a>Changer de mot de passe</a><br>
-                        <input type="password" placeholder="Entrez un nouveau mdp ou l'actuel" name="psw" required>
+                        <input type="password" placeholder="Entrez un nouveau MDP" name="psw" required>
                         <button type="submit">Changer</button>
                     </div>
                     <?php
                         if($_POST['psw'] !== ""){
-                            $password = $_POST['psw'] ;   
+                            $password = mysqli_real_escape_string($mysqli,$_POST['psw']);   
                             $stmt2 = $mysqli ->prepare ("UPDATE `users` SET PASSWORD=sha1('".$password."') WHERE USERNAME='".$user."';");
                             $stmt2->execute();
                         }

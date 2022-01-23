@@ -1,6 +1,7 @@
 <?php
     error_reporting(0);
-    $mysqli = new mysqli("localhost", "root", "", "php_exam_db");
+    include("loginDB.php");
+    loginDB();
     global $urlid;
     $urlid = $_GET['id'];
     $user_post = $_GET['username'];
@@ -54,19 +55,20 @@
                     <br>
                     <a class="titre">Modifier le titre :</a>
                     <br>
-                    <input class="titre" id="titre" name='titre' placeholder="<?php echo $rep['TITLE']?>" required></input>
+                    <input class="titre" name='title' placeholder="<?php echo $rep['TITLE']?>" required></input>
                     <br>
                     <a class="titre">Modifier le texte :</a>
                     <br>
-                    <textarea style="resize: none;" placeholder="<?php echo $rep['DESCRIPTION']?>" name="description" id ="description" required></textarea>
+                    <textarea style="resize: none;" placeholder="<?php echo $rep['DESCRIPTION']?>" name="descrip"  required></textarea>
                     <div class="btn-cont">
                         <button class="save" type="submit" name="save" >Enregistrer</button>
                     </div>
                     <?php 
-                        $titre = $_POST['titre'];
-                        $description = $_POST['description'];
+                        $titre = mysqli_real_escape_string($mysqli, $_POST['title']);
+                        $description = mysqli_real_escape_string($mysqli, $_POST['descrip']);
                         $urlid = $_GET['id'];
-                        $stmt = $mysqli->prepare("UPDATE `articles` SET `TITLE` = '".$titre."', `DESCRIPTION` = '".$description."' WHERE articles.ID= '".$urlid."';");
+                        $rq = "UPDATE articles SET TITLE = '".$titre."', DESCRIPTION = '".$description."' WHERE articles.ID= '".$urlid."';";
+                        $stmt = $mysqli->prepare($rq);
                         $stmt->execute();
                         } ; //close while loop 
                     ?>
