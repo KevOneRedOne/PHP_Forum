@@ -68,6 +68,8 @@
                                     $idpost = $reponse['ID'];
                                     $href ="details.php?id=";
                                     $href.=$idpost;
+                                    $href .="&username=";
+                                    $href .=$rep['USERNAME'];
                                     echo "<a href='".$href."'>Voir Plus</a>";
                                 ?>
                             </div>

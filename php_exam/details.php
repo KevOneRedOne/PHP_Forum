@@ -60,9 +60,13 @@
                     </div>
                     <div id="btn">
                         <?php
-                            $href ="edit.php?id=";
-                            $href.=$idPost;
-                            echo "<a href='".$href."'>MODIFIER</a>";
+                            if($rep2['USERNAME'] == $user){
+                                $href ="edit.php?id=";
+                                $href.=$idPost;
+                                $href .="&username=";
+                                $href .=$rep2['USERNAME'];
+                                echo "<a href='".$href."'>MODIFIER</a>";
+                            }
                         ?>
                             <a href=""></a>
                     </div>
