@@ -44,7 +44,7 @@
                         </div>
                         <div id="date">
                             <?php       
-                                $requete2 = "SELECT TITLE, DATE_CREATION,DESCRIPTION FROM articles WHERE articles.ID = '".$urlid."';";
+                                $requete2 = "SELECT * FROM articles WHERE articles.ID = '".$urlid."';";
                                 $exec2 = mysqli_query($mysqli, $requete2);
                                 while($rep = mysqli_fetch_array($exec2)){
                             ?>
@@ -59,19 +59,22 @@
                     <a class="titre">Modifier le texte :</a>
                     <br>
                     <textarea style="resize: none;" placeholder="<?php echo $rep['DESCRIPTION']?>" name="description" id ="description" required></textarea>
-                    <?php }; //close while loop ?>
                     <div class="btn-cont">
                         <button class="save" type="submit" name="save" >Enregistrer</button>
                     </div>
+                    <?php 
+                        $titre = $_POST['titre'];
+                        $description = $_POST['description'];
+                        $urlid = $_GET['id'];
+                        $stmt = $mysqli->prepare("UPDATE `articles` SET `TITLE` = '".$titre."', `DESCRIPTION` = '".$description."' WHERE articles.ID= '".$urlid."';");
+                        $stmt->execute();
+                        } ; //close while loop 
+                    ?>
                 </div>
             </div>
             <?php
                 //test
-                $titre = $_POST['titre'];
-                $description = $_POST['description'];
-                $urlid = $_GET['id'];
-                $stmt = $mysqli->prepare("UPDATE `articles` SET `TITLE` = '".$titre."', `DESCRIPTION` = '".$description."' WHERE articles.ID= '".$urlid."';");
-                $stmt->execute();
+                
             ?>
         </form>
     </body>

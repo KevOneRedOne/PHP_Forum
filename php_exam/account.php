@@ -1,3 +1,8 @@
+<?php
+    include("loginDB.php");
+    loginDB();
+    error_reporting(0);
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -25,7 +30,7 @@
                         ?>  
                         <a href="new.php">+</a>
                         <a href="login.php" onclick="logOut();">Déconnexion</a>
-                        <a href="account.php">$user</a>
+                        <a href="account.php"><?php echo $user; ?></a>
                         <a href="admin.php">ADMIN</a>
                     </div>
                 </div>
@@ -33,48 +38,90 @@
             <div class="container">
                 <div class="margcont">
                     <div class="account">
-                        <a>$_SESSION['username']</a>
+                        <a><?php echo $_SESSION['username']?></a>
                     </div>
                     <div class="inputgroup">
-                        <a>Changer d'addresse e-mail</a><br>
-                            
-
-                        <input type="email" placeholder="email" name="email">
-                        <button type="submit" name="email">Changer</button>
+                        <a>Changer e-mail</a><br>
+                        <?php 
+                            $requeteMail = "SELECT MAIL from users where USERNAME ='".$user."';";
+                            $executerequete = mysqli_query($mysqli,$requeteMail);
+                            $repExec = mysqli_fetch_array($executerequete);
+                        ?>
+                        <input type="email" placeholder="<?php echo $repExec['MAIL']?>" name="email" required>
+                        <button type="submit">Changer</button>
                     </div>
+                    <?php
+                        $mail = $_POST['email'];
+                        $stmt = $mysqli ->prepare ("UPDATE `users` SET MAIL='".$mail."' WHERE USERNAME='".$user."';");
+                        $stmt->execute();
+                        
+                    ?>  
                     <div class="inputgroup">
                         <a>Changer de mot de passe</a><br>
-                        <input type="password" placeholder="mot de passe" name="psw">
-                        <button type="submit" name="email">Changer</button>
+                        <input type="password" placeholder="Entrez un nouveau mdp ou l'actuel" name="psw" required>
+                        <button type="submit">Changer</button>
                     </div>
+                    <?php
+                        if($_POST['psw'] !== ""){
+                            $password = $_POST['psw'] ;   
+                            $stmt2 = $mysqli ->prepare ("UPDATE `users` SET PASSWORD=sha1('".$password."') WHERE USERNAME='".$user."';");
+                            $stmt2->execute();
+                        }
+                    ?>
                     <div>
                         <div class="publication">
                             <a>Publications</a>
                         </div>
-                        <div class="articles">
-                            <a href="details.php">
-
                         <?php
-                        // include("loginDB.php");
-                        // loginDB();
-                        // $idPost = $_GET['id'];
-                        // $requete = "SELECT * FROM users.USERNAME WHERE ='".$user."'";
-                        // $exec = mysqli_query($mysqli,$requete);
-                        // $rep = mysqli_fetch_array($exec);
+                            $requete = "SELECT ID from users WHERE USERNAME = '".$user."';";
+                            $exec_req = mysqli_query($mysqli,$requete);
+                            $rep = mysqli_fetch_array($exec_req);
+                            global $userID;
+                            $userID = $rep['ID'];
 
-
-                        
-                        // $stmt = $mysqli->prepare("UPDATE INTO users(MAIL) VALUES ('$email')");
-                        ?>
-
-                            <p><?php echo $rep1['USERNAME'];?></p>
-                            <a class="date">01/01/2022</a>
-                            <div class="description">
-                                <a>description</a>
+                            $requete2 = "SELECT * FROM articles INNER JOIN users on users.ID = articles.ID_AUTHOR 
+                            WHERE articles.ID_AUTHOR= '".$userID."';";
+                            $exec_req2 = mysqli_query($mysqli,$requete2);
+                        ?>   
+                        <?php while($reponse = mysqli_fetch_array($exec_req2)){?>
+                            <div class="articles flex">
+                                <div class="left">
+                                    <div class="date">
+                                        <p>Date : </p>
+                                        <p><?php echo $reponse['DATE_CREATION']?></p>
+                                    </div>
+                                    <div class="date">
+                                        <p>ID : </p>
+                                        <p><?php echo $reponse['ID']?></p>
+                                    </div>
+                                </div>
+                                <div id="rigth">
+                                    <div class="info">
+                                        <div class="username flex">
+                                            <a>
+                                                <?php
+                                                    $id_author = $reponse['ID_AUTHOR'];
+                                                    $request = "SELECT users.USERNAME FROM `articles`INNER JOIN `users` ON users.ID = articles.ID_AUTHOR
+                                                    WHERE articles.ID_AUTHOR = '".$id_author."';"; 
+                                                    $exec = mysqli_query($mysqli,$request);
+                                                    $rep2 = mysqli_fetch_array($exec);
+                                                    echo $rep2['USERNAME'];
+                                                ?>
+                                            | </a>
+                                            <div id="titre">
+                                                <p class="titre"> Sujet : <?php echo $reponse['TITLE']?></p>
+                                            </div>
+                                            <div id="description">
+                                                <p class="titre"> Description : <?php echo $reponse['DESCRIPTION']?></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <img src="" alt="">
-                            </a>
-                            <div class="divider"></div>
+                        <?php 
+                            } //close while loop
+                        ?>
+                        <div class="divider"></div>
                         </div>
                     </div>
                 </div>
@@ -82,7 +129,3 @@
         </form>
     </body>
 </html>
-
-<?php
-
-?>
