@@ -3,11 +3,9 @@ include("assets/php/loginDB.php");
 loginDB();
 if(isset($_GET['id']) AND $_GET['id'] > 0)
 {
-    $getid = intval($_GET['id']);
-    $userinfo = $requser->fetch();
+   $requser = SELECT;
 }
-?> 
-
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -30,17 +28,13 @@ if(isset($_GET['id']) AND $_GET['id'] > 0)
 
     <div class="account">
         <div class="L-Title flex padding">
-            <h2>Votre compte</h2>
-        <div align="center">
-            <h1>profil de <?php echo $userinfo['USERNAME']; ?></h1>
-            <br />
-            <h1>mail :<?php echo $userinfo['MAIL']; ?></h1>
-            <br />
-            <a href="modprofil.php">modifier mon profil</a>
-            <br />
-            <a href="deco.php">Deconnexion</a>
-            
-</body>
-</html>
+            <h2>Modifier mon compte</h2>
+            <form method="POST" action="">
+                <input type="text" name="newusername" placeholder="username"> <br />
+                <input type="text" name="newusemail" placeholder="email"> <br />
+                <input type="text" name="newmdp" placeholder="mot de passe"> <br />
+                <input type="text" name="newmdp0" placeholder="Confirmer le mot de passe"> <br />
+                <input type="submit" value="confirmer les changements"
+            </form>
 
-
+?> 
